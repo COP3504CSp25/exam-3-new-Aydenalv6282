@@ -9,7 +9,7 @@ float consultMax(const std::string& search_term, const std::map<std::string, std
     auto it = data.find(search_term);
     if(it!=data.end()){
         std::vector<float> vec = it->second;
-        int max = vec.at(0);
+        float max = vec.at(0);
         for(size_t i=0; i<vec.size(); i++){
             if(vec.at(i) > max){
                 max = vec.at(i);
@@ -22,6 +22,9 @@ float consultMax(const std::string& search_term, const std::map<std::string, std
 
 std::map<std::string, float> returnMaxMap(const std::map<std::string, std::vector<float>>& in_map) {
     //implement your function here
-    std::map<std::string, float> stuff;
-    return stuff;
+    std::map<std::string, float> max_map;
+    for(auto it = in_map.begin(); it != in_map.end(); it++){
+        max_map[it->first] = consultMax(it->first, in_map);
+    }
+    return max_map;
 }
